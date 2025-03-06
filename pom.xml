@@ -6,7 +6,7 @@
 
     <!-- Información del proyecto -->
     <groupId>com.eci.arep</groupId>
-    <artifactId>arep-taller05</artifactId>
+    <artifactId>AREP-MANUELS-TALLER05</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -27,14 +27,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
-        
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>2.2.224</version> <!-- Usa la última versión estable -->
-            <scope>runtime</scope>
-        </dependency>
-
 
         <!-- Spring Boot Starter Data JPA (para persistencia con JPA/Hibernate) -->
         <dependency>
@@ -50,12 +42,35 @@
             <version>8.0.33</version>
         </dependency>
 
+        <!-- H2 Database (para pruebas en memoria) -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Spring Boot Starter Validation (para validaciones de datos) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
         <!-- Spring Boot Starter Test (para pruebas unitarias) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring-boot.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Lombok (para reducir código boilerplate) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -68,7 +83,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.eci.arep.arep_taller05.ApplicationProperty</mainClass>
+                    <mainClass>com.eci.AREP_TALLER05_MANUELS.ApplicationProperty</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -91,4 +106,23 @@
             </plugin>
         </plugins>
     </build>
+
+    <!-- Repositorios adicionales (si es necesario) -->
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <name>AREP-MANUELS-TALLER05</name>
 </project>
