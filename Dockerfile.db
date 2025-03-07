@@ -1,0 +1,11 @@
+# Dockerfile para la base de datos
+FROM mysql:8.0
+
+# Variables de entorno para la base de datos
+ENV MYSQL_DATABASE=properties_db
+ENV MYSQL_USER=Manuel
+ENV MYSQL_PASSWORD=root123
+ENV MYSQL_ROOT_PASSWORD=root123
+
+# Exponer el puerto de MySQL
+EXPOSE 3306
