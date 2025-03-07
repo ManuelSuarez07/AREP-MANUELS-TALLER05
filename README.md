@@ -253,7 +253,7 @@ curl http://your-ip-address:35000/test-endpoint
 ## 🎥 Deployment Videos
 
 [🎥 Deployment Video](src/main/resources/Images/VideoFuncionamiento.png)
-[🎥 AWS Deployment Video](src/main/resources/Images/VideoFuncionamiento.png)
+[🎥 AWS Deployment Video](https://youtu.be/Pri7Ge3WBX0)
 
 ---
 
