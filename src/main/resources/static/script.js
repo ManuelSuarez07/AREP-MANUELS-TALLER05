@@ -37,7 +37,7 @@ async function loadProperties() {
     }
 }
 
-// Función para configurar el formulario
+// Función para configurar el formulario de agregar propiedades
 function setupForm() {
     const propertyForm = document.getElementById("propertyForm");
     propertyForm.addEventListener("submit", async (e) => {
@@ -47,7 +47,7 @@ function setupForm() {
             id: document.getElementById("propertyId").value || null,
             address: document.getElementById("location").value,
             price: parseFloat(document.getElementById("price").value),
-            size: parseInt(document.getElementById("size").value), // Asegúrate de que sea un entero
+            size: parseFloat(document.getElementById("size").value),
             description: document.getElementById("details").value
         };
 
@@ -76,19 +76,72 @@ function setupForm() {
 // Función para editar una propiedad
 async function editProperty(id) {
     try {
+        console.log("Editing property with ID:", id);
         const response = await fetch(`${API_URL}/${id}`);
         if (!response.ok) throw new Error("Error loading property");
         const property = await response.json();
-        document.getElementById("propertyId").value = property.id;
-        document.getElementById("location").value = property.address;
-        document.getElementById("price").value = property.price;
-        document.getElementById("size").value = property.size;
-        document.getElementById("details").value = property.description;
+        console.log("Property data:", property);
+
+        // Mostrar el formulario de edición
+        document.getElementById("editFormSection").style.display = "block";
+
+        // Cargar los datos de la propiedad en el formulario
+        document.getElementById("editPropertyId").value = property.id;
+        document.getElementById("editLocation").value = property.address;
+        document.getElementById("editPrice").value = property.price;
+        document.getElementById("editSize").value = property.size;
+        document.getElementById("editDetails").value = property.description;
     } catch (error) {
         console.error("Error:", error);
         alert("Error loading property.");
     }
 }
+
+// Función para cancelar la edición
+function cancelEdit() {
+    // Ocultar el formulario de edición
+    document.getElementById("editFormSection").style.display = "none";
+
+    // Limpiar los campos del formulario
+    document.getElementById("editForm").reset();
+}
+
+// Configurar el evento submit del formulario de edición
+document.getElementById("editForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const property = {
+        id: document.getElementById("editPropertyId").value,
+        address: document.getElementById("editLocation").value,
+        price: parseFloat(document.getElementById("editPrice").value),
+        size: parseFloat(document.getElementById("editSize").value),
+        description: document.getElementById("editDetails").value
+    };
+
+    try {
+        const response = await fetch(`${API_URL}/${property.id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(property)
+        });
+
+        if (!response.ok) throw new Error("Error updating property");
+
+        alert("Property updated successfully.");
+
+        // Ocultar el formulario de edición
+        document.getElementById("editFormSection").style.display = "none";
+
+        // Limpiar el formulario
+        document.getElementById("editForm").reset();
+
+        // Recargar la lista de propiedades
+        loadProperties();
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Error updating property.");
+    }
+});
 
 // Función para eliminar una propiedad
 async function deleteProperty(id) {

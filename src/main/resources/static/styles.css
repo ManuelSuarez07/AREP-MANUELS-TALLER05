@@ -69,12 +69,33 @@ button[type="submit"] {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     margin: 0 10px; /* Margen para respetar el cuadro */
 }
 
 button[type="submit"]:hover {
     background-color: #c0a030; /* Dorado más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Efecto de escala */
+}
+
+/* Estilos para el botón Cancel */
+button[type="button"] {
+    width: calc(100% - 20px); /* Ajuste para respetar el margen */
+    padding: 12px;
+    background-color: #6c757d; /* Gris oscuro */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 10px 10px 0 10px; /* Margen superior e inferior */
+}
+
+button[type="button"]:hover {
+    background-color: #5a6268; /* Gris más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Efecto de escala */
 }
 
 /* Estilos para la tabla */
