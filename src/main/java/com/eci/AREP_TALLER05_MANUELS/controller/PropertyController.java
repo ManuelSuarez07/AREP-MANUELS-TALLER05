@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/properties")
@@ -38,10 +39,19 @@ public class PropertyController {
 
     // Métodos existentes (getPropertyById, createProperty, updateProperty, deleteProperty)
     @GetMapping("/{id}")
-    public ResponseEntity<Property> getPropertyById(@PathVariable Long id) {
-        return propertyService.getPropertyById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Property> getPropertyById(@PathVariable(name = "id") Long id) {
+        try {
+            Optional<Property> property = propertyService.getPropertyById(id);
+            if (property.isPresent()) {
+                return ResponseEntity.ok(property.get());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            System.err.println("Error fetching property with ID: " + id);
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping
