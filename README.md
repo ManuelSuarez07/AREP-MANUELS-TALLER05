@@ -253,7 +253,7 @@ curl http://your-ip-address:35000/test-endpoint
 
 ---
 
-🚀 **Deployment completed successfully!** 🎉
+🚀 **LAB05 SUCCESSFULLY COMPLETE!** 🎉
 
 
 ## 👤 Author
