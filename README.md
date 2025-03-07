@@ -82,7 +82,7 @@ Some of the server's key features include:
 
 ## 🚀 Deployment
 
-![Video](src/resources/video.mp4)
+![Video](src/main/resources/video.mp4)
 
 ## 👤 Author
 
